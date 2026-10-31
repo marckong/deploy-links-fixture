@@ -1,0 +1,23 @@
+version: 1
+
+functions:
+  # Needs nothing but Volcano's own variables.
+  - name: hello
+    visibility: public
+    invocation_mode: http
+    http_auth_mode: none
+
+  # Declares a variable the visitor must supply when deploying.
+  - name: ai-check
+    visibility: public
+    invocation_mode: http
+    http_auth_mode: none
+    variable_scope: scoped
+    variables:
+      - OPENAI_API_KEY
+
+  # Declares the project's service key, so the deploy page warns the visitor.
+  - name: admin-stats
+    variable_scope: scoped
+    variables:
+      - VOLCANO_SERVICE_KEY
